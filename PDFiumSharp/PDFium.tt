@@ -807,9 +807,9 @@ foreach (var import in Imports)
 	if (returnType == "void")
 	{
 // --------------------------------------------------------- Code End ----------------------------------------------------- #>
-			if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+			if (IntPtr.Size == 8)
 				lock(_lock) { PlatformInvoke.<#=name#>_x64(<#=args#>); }
-			else if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
+			else if (IntPtr.Size == 4)
 				lock(_lock) { PlatformInvoke.<#=name#>_x86(<#=args#>); }
 			else
 				throw new PlatformNotSupportedException();
@@ -818,9 +818,9 @@ foreach (var import in Imports)
 	else
 	{
 // --------------------------------------------------------- Code End ----------------------------------------------------- #>
-			if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+			if (IntPtr.Size == 8)
 				lock(_lock) { return PlatformInvoke.<#=name#>_x64(<#=args#>); }
-			else if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
+			else if (IntPtr.Size == 4)
 				lock(_lock) { return PlatformInvoke.<#=name#>_x86(<#=args#>); }
 			else
 				throw new PlatformNotSupportedException();
